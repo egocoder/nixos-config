@@ -1,0 +1,13 @@
+# backups / temporary
+hosts/*/ssh/*
+*.pem
+*.key
+*.crt
+
+# secrets archive
+*.secret
+
+# private keys / credentials
+flake_backup*
+result*
+*.swp
