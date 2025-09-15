@@ -11,3 +11,7 @@ hosts/*/ssh/*
 flake_backup*
 result*
 *.swp
+config.nix
+
+#personal
+prompt.md
