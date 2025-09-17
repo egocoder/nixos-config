@@ -7,7 +7,7 @@
 
 {
   hardware.graphics = {
-    enable = true;               
+    enable = true;
     enable32Bit = true;
 
     package = pkgs.mesa.drivers;
