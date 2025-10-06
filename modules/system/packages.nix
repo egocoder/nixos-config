@@ -7,5 +7,6 @@
     wget
     htop
     neovim
+    helix
   ];
 }

@@ -1,4 +1,4 @@
-{
+{ config, pkgs, ... }:{
   imports = [
 
     # Bootloaders
@@ -28,7 +28,7 @@
     ./fonts.nix
 
     # Services
-    ./services/docker.nix
+    ./services
     ./services/greetd.nix
     ./services/hyprland.nix
   ];
