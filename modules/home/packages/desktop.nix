@@ -10,7 +10,6 @@
     telegram-desktop
     vesktop
     spotify
-    calibre
     direnv
   ];
 }
