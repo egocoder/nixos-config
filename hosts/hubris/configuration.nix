@@ -6,7 +6,7 @@
     ./local.nix
   ];
 
-  gpuVendor = "amd";
+  gpuVendor = "nvidia";
 
   environment.systemPackages = [ pkgs.home-manager ];
 

@@ -1,39 +1,43 @@
-# modules/system/hardware/graphics.nix
-# Manages graphics drivers and related settings.
-
 { config, pkgs, lib, ... }:
 
 {
-  # Enable the graphics stack, including OpenGL. This is the main switch.
+  # 1. Base configuration for all GPUs.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      vulkan-loader
-      libva
-      vulkan-validation-layers
-    ];
   };
 
-  # Conditionally configure settings based on the GPU vendor defined per-host.
-  environment.systemPackages = with pkgs;
-    lib.mkIf (config.gpuVendor == "nvidia") [
-      # Makes nvidia-smi and other tools available in the system path.
-      config.boot.kernelPackages.nvidiaPackages.stable
-    ];
+  # 2. System-wide graphics packages.
+  # This single block now handles all package installations conditionally.
+  environment.systemPackages = with pkgs; [
+    # General-purpose graphics tools
+    vulkan-tools
+    glxinfo
+  ]
+  # Conditionally add NVIDIA packages using lib.optionals
+  ++ lib.optionals (config.gpuVendor == "nvidia") [
+    config.boot.kernelPackages.nvidiaPackages.stable # For nvidia-smi
+    cudaPackages.cudatoolkit
+  ]
+  # Conditionally add AMD packages using lib.optionals
+  ++ lib.optionals (config.gpuVendor == "amd") [
+    amdvlk
+  ];
 
+  # 3. NVIDIA-specific hardware configuration.
   hardware.nvidia = lib.mkIf (config.gpuVendor == "nvidia") {
-    # For Wayland/Hyprland support.
+    open = false;
+    nvidiaSettings = true;
     modesetting.enable = true;
-
-    # Ensures driver version matches the running kernel.
+    powerManagement.enable = true;
+    prime = {
+      offload.enable = true;
+      offload.enableOffloadCmd = true;
+    };
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # The 'hardware.opengl' block was here, but has been removed.
-  # Its function is now handled by 'hardware.graphics.enable = true;'.
-
-  # Set necessary kernel parameters for NVIDIA on Wayland.
+  # 4. NVIDIA-specific kernel parameters.
   boot.kernelParams = lib.mkIf (config.gpuVendor == "nvidia") [
     "nvidia_drm.modeset=1"
   ];
