@@ -3,10 +3,11 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/system/hardware/graphics.nix
+    ../../modules/system
     ./local.nix
   ];
 
-  gpuVendor = "nvidia";
   
   environment.systemPackages = [ pkgs.home-manager ];
 

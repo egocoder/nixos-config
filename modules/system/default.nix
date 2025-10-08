@@ -6,7 +6,7 @@
     # ./boot/grub.nix  # Uncomment if using GRUB instead of EFI
 
     # Core system
-    ./core/default.nix
+    ./core
     ./mtp.nix
     ./mime.nix
 
