@@ -1,13 +1,10 @@
-{ pkgs, user, ... }:
-
+{ pkgs, user, ... }: 
 {
   services.greetd = {
     enable = true;
-    vt = 1;
-
     settings = {
       default_session = {
-        command = "${pkgs.hyprland}/bin/Hyprland";
+        command = "${pkgs.zsh}/bin/zsh";
         user = user;
       };
     };

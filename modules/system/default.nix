@@ -21,15 +21,12 @@
     ./users.nix
 
     # Hardware modules
-    ./hardware/graphics.nix
-    ./hardware/audio.nix
+    ./hardware
 
     # Fonts
     ./fonts.nix
 
     # Services
     ./services
-    ./services/greetd.nix
-    ./services/hyprland.nix
   ];
 }

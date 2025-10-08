@@ -1,18 +1,23 @@
-{ pkgs, ... }:
+{ lib, ... }:
 
 let
-  appsBinds      = import ./apps.nix { inherit pkgs; };
-  layoutBinds    = import ./layout.nix { inherit pkgs; };
-  mediaBinds     = import ./media.nix { inherit pkgs; };
-  renderBinds    = import ./render.nix { inherit pkgs; };
-  workspacesBinds= import ./workspaces.nix { inherit pkgs; };
-  userBinds      = import ./user.nix { inherit pkgs; };
+
+  bindModules = [
+    ./apps.nix
+    ./layout.nix
+    ./media.nix
+    ./render.nix
+    ./workspaces.nix
+    ./user.nix
+  ];
+
+  # Import all modules from the list.
+  importedBinds = map (p: import p) bindModules;
+
+  mergedBinds = lib.foldl' lib.recursiveUpdate { } importedBinds;
+
 in
 {
-  programs.hyprland.settings.bind = appsBinds
-                                   ++ layoutBinds
-                                   ++ mediaBinds
-                                   ++ renderBinds
-                                   ++ workspacesBinds
-                                   ++ userBinds;
+  # Assign the merged binds to the correct hyprland settings.
+  wayland.windowManager.hyprland.settings = mergedBinds;
 }

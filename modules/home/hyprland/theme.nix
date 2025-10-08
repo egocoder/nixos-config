@@ -1,5 +1,5 @@
 { config, ... }: {
-  programs.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = {
     general = {
       "col.active_border" = "rgb(${config.stylix.colors.base01})";
       "col.inactive_border" = "rgb(${config.stylix.colors.base00})";

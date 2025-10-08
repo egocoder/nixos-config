@@ -5,14 +5,14 @@
 
   users.users.${user} = {
     isNormalUser = true;
-
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
-
+    extraGroups = [ "wheel" "networkmanager" "docker" "kvm" ];
     shell = pkgs.zsh;
-  };
 
-  # Automatically login on console (optional, can comment out for strict security)
-  # services.getty.autologinUser = user;
+    # Set the initial password for the user account.
+    # On first login, you will be prompted to change it.
+    # An empty string means no password is required for the first login.
+    initialPassword = "123";
+  };
 
   security.sudo.wheelNeedsPassword = true;
 }

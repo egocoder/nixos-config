@@ -4,8 +4,9 @@
   imports = [
     ./hardware-configuration.nix
     ./local.nix
-    ../../modules/system/default.nix
   ];
+
+  gpuVendor = "amd";
 
   environment.systemPackages = [ pkgs.home-manager ];
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: { 
   home.sessionVariables = {
     # -- Core Wayland Toolkits --
     GDK_BACKEND = "wayland,x11,*";
@@ -28,5 +28,9 @@
     # -- Browser & Toolkit Hints --
     MOZ_ENABLE_WAYLAND = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
+
+    # -- Custom Session Info --
+    # Makes the active GPU vendor available to scripts.
+    ACTIVE_GPU_VENDOR = config.gpuVendor or "amd";
   };
 }

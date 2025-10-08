@@ -1,7 +1,8 @@
 {
   imports = [
     ./kernel.nix
-    ./zram.nix
+    ./options.nix
     ./locale.nix
+    ./zram.nix
   ];
 }

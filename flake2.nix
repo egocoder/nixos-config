@@ -22,6 +22,8 @@
 
   outputs = inputs @ { self, nixpkgs, home-manager, stylix, nixvim, ... }:
     let
+      # Import local, unversioned configuration.
+      # Load main configuration, ensuring it exists.
       config =
         if builtins.pathExists ./config.nix then
           import ./config.nix
@@ -48,26 +50,36 @@
       makeSystem = { hostname, user, stateVersion }:
         nixpkgs.lib.nixosSystem {
           inherit system;
+
           specialArgs = { inherit inputs user hostname stateVersion; };
+
           modules = [
             ./modules/system/default.nix
             stylix.nixosModules.stylix
+
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit user inputs; };
               home-manager.users.${user}.imports = homeModules;
-              system.stateVersion = stateVersion;
             }
+
             ./hosts/${hostname}/configuration.nix
           ];
         };
+
     in {
+      # --- Outputs ---
+      # Build all NixOS configurations defined in 'hosts'.
+      # Access with `nixos-rebuild switch --flake .#hostname`
       nixosConfigurations = builtins.listToAttrs (
         map (host: { name = host.hostname; value = makeSystem host; }) hosts
       );
 
+      # A standalone home-manager configuration.
+      # Useful for applying dotfiles on non-NixOS systems.
+      # Build with: home-manager switch --flake .#<username>
       homeConfigurations."${config.username}" =
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};

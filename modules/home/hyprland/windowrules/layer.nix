@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.hyprland.settings.layerrule = [
+  wayland.windowManager.hyprland.settings.layerrule = [
     "blur, rofi"
     "ignorezero, rofi"
     "blur, notifications"

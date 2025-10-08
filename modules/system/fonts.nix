@@ -3,7 +3,7 @@
 {
   fonts.packages = with pkgs; [
     fira-code
-    mirage-code
+    miracode
     monocraft
     nerd-fonts.hack
     nerd-fonts.jetbrains-mono

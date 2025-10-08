@@ -1,8 +1,5 @@
 { pkgs, ... }: {
   home.sessionVariables = {
-    # -- Electron Apps --
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-
     # -- Aquamarine (Hyprland > 0.45) --
     # AQ_TRACE = "1";
     # AQ_DRM_DEVICES = "/dev/dri/card1:/dev/dri/card0";

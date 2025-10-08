@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.hyprland.settings = {
+  wayland.windowManager.hyprland.settings = {
     windowrulev2 = [
       "idleinhibit fullscreen, fullscreen:1"
       "tile, class:^(zen)$" 
