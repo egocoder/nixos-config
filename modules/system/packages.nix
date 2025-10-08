@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -8,5 +8,12 @@
     htop
     neovim
     helix
+
+    vulkan-tools
+    glxinfo
+  ]
+  ++ lib.optionals (config.gpuVendor == "nvidia") [
+    config.boot.kernelPackages.nvidiaPackages.stable # Para nvidia-smi
+    cudaPackages.cudatoolkit
   ];
 }
