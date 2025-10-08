@@ -1,35 +1,41 @@
 { config, pkgs, lib, ... }:
 
 {
-  # 1. Base configuration for all GPUs.
+  # 1. Configuração base para todas as GPUs
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  # 2. System-wide graphics packages.
-  # This single block now handles all package installations conditionally.
+  # 2. Pacotes de sistema para gráficos
+  # Este bloco único agora lida com todas as instalações de pacotes de forma condicional.
   environment.systemPackages = with pkgs; [
-    # General-purpose graphics tools
+    # Ferramentas gráficas de propósito geral
     vulkan-tools
     glxinfo
   ]
-  # Conditionally add NVIDIA packages using lib.optionals
+  # Adiciona pacotes da NVIDIA condicionalmente
   ++ lib.optionals (config.gpuVendor == "nvidia") [
-    config.boot.kernelPackages.nvidiaPackages.stable # For nvidia-smi
+    config.boot.kernelPackages.nvidiaPackages.stable # Para nvidia-smi
     cudaPackages.cudatoolkit
   ]
-  # Conditionally add AMD packages using lib.optionals
+  # Adiciona pacotes da AMD condicionalmente
   ++ lib.optionals (config.gpuVendor == "amd") [
     amdvlk
   ];
 
-  # 3. NVIDIA-specific hardware configuration.
+  # ====================================================================
+  # 3. Bloco de Configuração Específico da NVIDIA
+  # ====================================================================
+  boot.kernelParams = lib.mkIf (config.gpuVendor == "nvidia") [
+    "nvidia_drm.modeset=1"
+  ];
+
   hardware.nvidia = lib.mkIf (config.gpuVendor == "nvidia") {
+    modesetting.enable = true;
     open = false;
     nvidiaSettings = true;
-    modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false; # Melhor para desktops
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = true;
@@ -37,8 +43,12 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 4. NVIDIA-specific kernel parameters.
-  boot.kernelParams = lib.mkIf (config.gpuVendor == "nvidia") [
-    "nvidia_drm.modeset=1"
-  ];
+  # ====================================================================
+
+  # 4. Bloco de Configuração para AMD/Intel
+  # ====================================================================
+  hardware.graphics.extraPackages = with pkgs;
+    lib.mkIf (config.gpuVendor == "amd" || config.gpuVendor == "intel") [
+      amdvlk
+    ];
 }
