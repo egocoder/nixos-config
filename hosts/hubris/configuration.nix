@@ -1,12 +1,12 @@
 { pkgs, stateVersion, hostname, ... }:
 
 {
+  # Philosophy: Simple modules. Clear meaning. Growth without chaos.
+
   imports = [
     ./hardware-configuration.nix
     ./local.nix
   ];
-
-  gpuVendor = "nvidia";
 
   environment.systemPackages = [ pkgs.home-manager ];
 

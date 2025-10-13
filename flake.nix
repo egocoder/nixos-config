@@ -1,108 +1,101 @@
+# --- flake.nix ---
+# Philosophy: Simple modules. Clear meanings. Growth without chaos.
+# This flake supports both an integrated NixOS system build and a
+# standalone Home Manager configuration for portability.
 {
-  description = "A modular, minimal and scalable NixOS configuration";
+  description = "A modular, minimal, and scalable NixOS configuration by Weaver.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    nixpkgs.url      = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stylix = {
-      url = "github:danth/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    stylix.url       = "github:danth/stylix";
+    nixvim.url       = "github:nix-community/nixvim";
+    nur.url          = "github:nix-community/NUR";
+    hyprland.url     = "github:hyprwm/Hyprland";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, stylix, nixvim, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, stylix, hyprland, nur, ... }:
     let
-      # Import local, unversioned configuration.
-      # Load main configuration, ensuring it exists.
-      config =
-        if builtins.pathExists ./config.nix then
-          import ./config.nix
-        else
-          throw "ERROR: config.nix not found. Copy config.example.nix to config.nix and fill it.";
-
-      system = "x86_64-linux";
+      system       = "x86_64-linux";
       stateVersion = "25.05";
+      config = if builtins.pathExists ./config.nix
+        then import ./config.nix
+        else throw "ERROR: config.nix not found.";
 
-      homeModules = [
+      # --- Shared Home Manager Configuration ---
+      # This is the single source of truth for the user's home environment.
+      # It is used by both the NixOS system and the standalone home configuration.
+      homeManagerModules = [
+        # Import all home modules.
         ./modules/home/default.nix
+        # Import Stylix home module.
         stylix.homeModules.stylix
-        nixvim.homeModules.nixvim
-      ];
-
-      hosts = [
+        # Apply NUR overlay and allow unfree packages for home-manager.
         {
-          hostname = config.hostname;
-          user = config.username;
-          inherit stateVersion;
+          nixpkgs.overlays = [ nur.overlays.default ];
+          nixpkgs.config.allowUnfree = true;
+          home.stateVersion = stateVersion;
         }
       ];
 
-      makeSystem = { hostname, user, stateVersion }:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-
-          specialArgs = { inherit inputs user hostname stateVersion; };
-
-          modules = [
-            ./modules/system/default.nix
-            stylix.nixosModules.stylix
-
-            # --- BLOCO CORRIGIDO ---
-            # 1. Habilita o módulo do Home Manager para NixOS.
-            home-manager.nixosModules.home-manager # Vírgula removida
-
-            # 2. Configura o Home Manager.
-            {
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.${user}.imports = homeModules;
-              };
-            } # Vírgula removida
-
-            # 3. Passa valores do 'config' do NixOS para o Home Manager.
-            ({ config, ... }: {
-              home-manager.extraSpecialArgs = {
-                gpuVendor = config.gpuVendor;
-                inherit inputs user;
-              };
-            }) # Vírgula removida
-            # --- FIM DO BLOCO CORRIGIDO ---
-
-            ./hosts/${hostname}/configuration.nix
-          ];
+    in
+    {
+      # --- NixOS System Configuration (Integrated Home Manager) ---
+      # To build this: `sudo nixos-rebuild switch --flake .#loom`
+      nixosConfigurations.loom = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs stateVersion;
+          inherit (config) hostname username gpuVendor;
         };
+        modules = [
+          # System modules
+          ./modules/system/default.nix
+          ./hosts/${config.hostname}/configuration.nix
 
-    in {
-      # --- Outputs ---
-      # Build all NixOS configurations defined in 'hosts'.
-      # Access with `nixos-rebuild switch --flake .#hostname`
-      nixosConfigurations = builtins.listToAttrs (
-        map (host: { name = host.hostname; value = makeSystem host; }) hosts
-      );
+          # Flake modules
+          stylix.nixosModules.stylix
+          nur.modules.nixos.default
 
-      # A standalone home-manager configuration.
-      # Useful for applying dotfiles on non-NixOS systems.
-      # Build with: home-manager switch --flake .#<username>
-      homeConfigurations."${config.username}" =
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = {
-            inherit inputs;
-            user = config.username;
-            gpuVendor = config.gpuVendor;
-          };
-          modules = homeModules;
+          # Home Manager integration module for NixOS
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.backupFileExtension = "backup";
+            home-manager.useGlobalPkgs = false;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = {
+              inherit inputs stateVersion;
+              inherit (config) username gpuVendor;
+            };
+            home-manager.users.${config.username} = {
+              # Reuse the shared home configuration.
+              imports = homeManagerModules;
+            };
+          }
+
+          # Hyprland package from flake input
+          {
+            programs.hyprland.package = hyprland.packages.${system}.hyprland;
+            programs.hyprland.portalPackage = hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+            hardware.graphics.package = hyprland.inputs.nixpkgs.legacyPackages.${system}.mesa;
+            hardware.graphics.package32 = hyprland.inputs.nixpkgs.legacyPackages.${system}.pkgsi686Linux.mesa;
+          }
+        ];
+      };
+
+      # --- Home Manager Standalone Configuration ---
+      # To build this: `home-manager switch --flake .#weaver`
+      homeConfigurations.weaver = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        extraSpecialArgs = {
+          inherit inputs stateVersion;
+          inherit (config) username gpuVendor;
         };
+        # Reuse the same shared home configuration.
+        modules = homeManagerModules;
+      };
     };
 }

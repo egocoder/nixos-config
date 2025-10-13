@@ -1,13 +1,5 @@
 {
-  # -- User Details --
-  username = "your-username-here";
-
-  # -- System Details --
-  hostname = "your-hostname-here";
-
-  gpuVendor = "nvidia";
-
-  # -- Optional Future Settings --
-  # email = "username@example.com";
-  # gitUsername = "user-git";
+  hostname = "yourhostname";     # System hostname
+  username = "yourusername";     # Main user
+  gpuVendor = "nvidia";    # GPU type: "nvidia", "amd", or "intel"
 }

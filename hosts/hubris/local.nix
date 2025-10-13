@@ -1,6 +1,8 @@
-{ pkgs, ... }: {
+{
   environment.systemPackages = with pkgs; [
-    gcc
-    kdenlive
+    helix
+    neovim
+    git
+    htop
   ];
 }
