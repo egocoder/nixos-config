@@ -1,23 +1,16 @@
 {
-  # Enable the Hyprland window manager via Home Manager.
-  # This is essential for standalone (non-NixOS) deployments.
-  wayland.windowManager.hyprland = {
-    enable = true;
-    # Recommended for managing user services like hypridle.
-    systemd.enable = true;
-  };
-
-  # Import all modularized configuration files.
   imports = [
+    ./settings.nix
     ./animations
     ./binds
-    ./core.nix
-    ./decorations.nix
     ./env
-    ./input.nix
-    ./startup.nix
-    #./theme.nix
-    ./variables.nix
-    ./windowrules
+    ./rules
   ];
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;          # Deixa o NixOS gerenciar o pacote principal
+    systemd.enable = false;  # Impede o HM de criar o serviço principal
+    portalPackage = null;    # FIX: Impede explicitamente o HM de tocar no pacote do portal
+  };
 }

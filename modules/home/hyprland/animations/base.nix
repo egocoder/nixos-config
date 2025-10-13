@@ -1,13 +1,11 @@
-{ pkgs, ... }:
-
+# modules/home/hyprland/animations/base.nix
 {
-  wayland.windowManager.hyprland.settings = {
-    # Main switch for animations.
-    animations = {
-      enabled = true;
-    };
+  # Simple modules. Clear meanings. Growth without chaos.
+  # Defines the default motion style for the Hyprland desktop.
+  # Inspired by a balanced and fluid preset.
 
-    # Bezier curve definitions. Each is a single string.
+  wayland.windowManager.hyprland.settings = {
+    # Bézier curves define the speed of an animation over time.
     bezier = [
       "wind, 0.05, 0.9, 0.1, 1.05"
       "winIn, 0.1, 1.1, 0.1, 1.1"
@@ -18,7 +16,7 @@
       "smoothIn, 0.5, -0.5, 0.68, 1.5"
     ];
 
-    # Animation rules. Each is a single string.
+    # Animation rules apply curves to different UI elements.
     animation = [
       "windows, 1, 6, wind, slide"
       "windowsIn, 1, 5, winIn, slide"
@@ -28,8 +26,6 @@
       "borderangle, 1, 180, liner, loop"
       "fade, 1, 3, smoothOut"
       "workspaces, 1, 5, overshot"
-      "workspacesIn, 1, 5, winIn, slide"
-      "workspacesOut, 1, 5, winOut, slide"
     ];
   };
 }

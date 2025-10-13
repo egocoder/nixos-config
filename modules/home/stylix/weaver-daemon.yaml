@@ -1,0 +1,21 @@
+# --- Weaver's Destiny ---
+# A color scheme inspired by Weaver, the Daemon of Destiny.
+# It evokes themes of shadow, fate, soul, and threads of power.
+scheme: "Weaver's Destiny"
+author: "Weaver"
+base00: "101116"  # Abyss Black      (Deepest background)
+base01: "181920"  # Shadow Steel     (Lighter background)
+base02: "24252D"  # Loom's Frame     (UI elements, selections)
+base03: "3A3C47"  # Faded Memory     (Muted elements, comments)
+base04: "9DA2B3"  # Thread Gray      (Default foreground)
+base05: "D5D8E2"  # Soul Ash         (Bright foreground, variables)
+base06: "E3E6F0"  # Fate's Glow      (Brighter text)
+base07: "F2F3F7"  # Silk White       (Brightest foreground)
+base08: "C77E8C"  # Frayed Thread    (Red, errors)
+base09: "D9A67D"  # Oracle's Glimmer (Orange, warnings)
+base0A: "E1C48B"  # Golden Thread    (Yellow, finds)
+base0B: "9EC19F"  # Verdant Fate     (Green, success)
+base0C: "90B6B4"  # Echoing Teal     (Cyan, types)
+base0D: "8299C5"  # Weaver's Indigo  (Blue, functions, primary accent)
+base0E: "A995C0"  # Twilight Plum    (Magenta, keywords)
+base0F: "6A6D7D"  # Stone of Truth   (Brown/Constants)

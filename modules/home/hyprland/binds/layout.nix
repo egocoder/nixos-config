@@ -1,28 +1,21 @@
+# --- Window and Layout Management Binds ---
+# Clear and responsive control over window states.
 {
   bind = [
-    # Close/kill windows
     "$mainMod, Q, killactive,"
-    "$mainMod SHIFT, Q, exec, hyprctl kill" # Kills the client process
-
-    # Toggle window states
-    "$mainMod, SPACE, togglefloating,"
-    "$mainMod SHIFT, F, fullscreen"
-
-    # Layout management
-    "$mainMod, P, pseudo," # Dwindle pseudo-layout
-    "$mainMod, J, togglesplit," # Dwindle split ratio
+    "$mainMod, space, togglefloating,"
+    "$mainMod SHIFT, F, fullscreen," # True fullscreen
+    "$mainMod, F, fullscreen, 1"   # Toggles fake fullscreen
+    "$mainMod, P, pseudo,"
+    "$mainMod, J, togglesplit,"
   ];
-
   binde = [
-    # Resize windows
-    "$mainMod SHIFT, left, resizeactive, -50 0"
-    "$mainMod SHIFT, right, resizeactive, 50 0"
-    "$mainMod SHIFT, up, resizeactive, 0 -50"
-    "$mainMod SHIFT, down, resizeactive, 0 50"
+    "$mainMod SHIFT, left, resizeactive, -20 0"
+    "$mainMod SHIFT, right, resizeactive, 20 0"
+    "$mainMod SHIFT, up, resizeactive, 0 -20"
+    "$mainMod SHIFT, down, resizeactive, 0 20"
   ];
-
   bindm = [
-    # Move and resize windows with mouse
     "$mainMod, mouse:272, movewindow"
     "$mainMod, mouse:273, resizewindow"
   ];

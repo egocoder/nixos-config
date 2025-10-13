@@ -1,5 +1,7 @@
+{ ... }:
 {
   imports = [
+    ./browsers
     ./cli.nix
     ./desktop.nix
     ./dev.nix

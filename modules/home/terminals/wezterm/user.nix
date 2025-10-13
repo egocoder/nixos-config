@@ -1,11 +1,5 @@
-{ pkgs, ... }: {
-  programs.wezterm.extraConfig = ''
-    local wezterm = require("wezterm")
-    local config = wezterm.config_builder()
+-- User tweaks — space for personal experiments
+-- Keep isolated to avoid polluting main behavior.
 
-    -- Example: Enable background blur on Wayland when supported
-    -- config.window_background_opacity = 0.92
-
-    return config
-  '';
-}
+-- Example:
+-- config.window_background_opacity = 0.92

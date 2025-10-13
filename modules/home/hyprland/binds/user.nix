@@ -1,6 +1,7 @@
+# modules/home/hyprland/binds/user.nix
 {
   bind = [
-    # Launch Alacritty with a specific Zellij session
-    "$mainMod, E, exec, alacritty -t 'Zellij Web Dev' -e zellij attach --create web-dev"
+    # FIX: Command is wrapped in `sh -c '...'` to prevent parsing errors.
+    "$mainMod SHIFT, E, exec, sh -c 'alacritty -t \"Zellij Web Dev\" -e zellij attach --create web-dev'"
   ];
 }

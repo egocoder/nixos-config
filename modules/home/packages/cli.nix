@@ -1,9 +1,13 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
+    bat
     bc
     bottom
     brightnessctl
     cliphist
+    eza
     ffmpeg
     ffmpegthumbnailer
     fzf

@@ -1,6 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.packages = with pkgs; [
-    bemoji
-    nix-prefetch-scripts
+    bemoji                 # Emoji picker
+    nix-prefetch-scripts   # Nix helper for prefetching sources
   ];
 }

@@ -1,7 +1,7 @@
 {
   imports = [
-    ./wezterm
-    # ./alacritty
-    # ./kitty
+   #./alacritty
+   ./wezterm
+   ./yazi
   ];
 }

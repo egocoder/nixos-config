@@ -1,9 +1,10 @@
+# --- Environment Aggregator ---
+# Simple modules. Clear meanings. Growth without chaos.
+#
+# Merges environment variables from all sub-modules.
 {
   imports = [
     ./core.nix
-    ./extra.nix
     ./nvidia.nix
-    # ./amd.nix
-    # ./intel.nix
   ];
 }

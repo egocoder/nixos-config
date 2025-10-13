@@ -1,13 +1,19 @@
+# modules/home/hyprland/binds/apps.nix
 {
+  # Simple bindings for frequently used applications.
   bind = [
-    # Terminals
-    "$mainMod, K, exec, $term"
-    "$mainMod SHIFT, RETURN, exec, alacritty"
+    # Core utilities
+    "$mainMod, RETURN, exec, $term"
+    "$mainMod, D, exec, $menu"
+    "$mainMod, E, exec, $files"
 
-    # App Launcher (Rofi)
-    "$mainMod, D, exec, pkill rofi || rofi -show drun -modi drun,filebrowser,run,window"
+    # --- User Additions ---
+    # Development
+    "$mainMod, C, exec, $editor" # FIX: Use the new $editor variable.
+    "$mainMod, Z, exec, zed"
 
-    # File Manager
-    "$mainMod, F, exec, $files"
+    # Communication & Web
+    "$mainMod, B, exec, firefox"
+    "$mainMod, X, exec, vesktop"
   ];
 }
