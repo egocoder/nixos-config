@@ -1,5 +1,6 @@
 {
   hostname = "yourhostname";     # System hostname
   username = "yourusername";     # Main user
-  gpuVendor = "nvidia";    # GPU type: "nvidia", "amd", or "intel"
+  gpuVendor = "nvidia";    # GPU type: "nvidia", "amd", or "intel" 
+                           ## WARNING: TESTED ONLY ON NVIDIA DRIVERS
 }
