@@ -1,12 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  # Philosophy: Simple modules. Clear meaning. Growth without chaos.
+  # Enable Hyprland — a modern, dynamic Wayland compositor.
+
   programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    # xwayland.enable = false; # Uncomment if you want pure Wayland
+    enable = true;       # Enable Hyprland itself
+    withUWSM = true;     # Use Wayland Session Manager integration
+    # xwayland.enable = false; # Uncomment for pure Wayland setups
   };
 
-  # PAM service for hyprlock
+  # Register PAM service for Hyprlock (screen locker)
   security.pam.services.hyprlock = {};
 }

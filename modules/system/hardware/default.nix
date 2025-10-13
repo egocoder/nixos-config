@@ -1,6 +1,6 @@
 {
   imports = [
-    ./audio.nix
-    ./graphics.nix
+    ./audio.nix     # Configure PipeWire for audio handling
+    ./graphics.nix  # Manage GPU drivers and rendering stack
   ];
 }

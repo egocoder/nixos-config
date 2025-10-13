@@ -1,6 +1,9 @@
 { pkgs, ... }:
 
 {
+  # Philosophy: Simple modules. Clear meaning. Growth without chaos.
+  # Define a clean and functional font stack with developer-focused fonts.
+
   fonts.packages = with pkgs; [
     fira-code
     miracode

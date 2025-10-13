@@ -1,47 +1,64 @@
-{ config, pkgs, lib, ... }:
+{ config, lib, pkgs, gpuVendor, ... }:
 
 {
-  # 1. Configuração base para todas as GPUs.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+
+    extraPackages = lib.mkMerge [
+      (lib.mkIf (gpuVendor == "amd") (with pkgs; [
+        mesa
+        vulkan-loader
+        vulkan-validation-layers
+        vulkan-tools
+      ]))
+
+      (lib.mkIf (gpuVendor == "intel") (with pkgs; [
+        intel-media-driver
+        vulkan-loader
+        vulkan-validation-layers
+        vulkan-tools
+      ]))
+
+      (lib.mkIf (gpuVendor == "nvidia") (with pkgs; [
+        vulkan-tools
+        glxinfo
+        cudatoolkit
+      ]))
+    ];
   };
 
-  # ====================================================================
-  # 2. Bloco de Configuração Específico da NVIDIA
-  # Ativado apenas se `gpuVendor = "nvidia";` estiver definido no host.
-  # ====================================================================
+  services.xserver.videoDrivers = lib.mkIf (gpuVendor == "nvidia") [ "nvidia" ];
 
-  # Força a CONSTRUÇÃO do driver NVIDIA para o kernel selecionado.
-  # Esta é a correção mais importante para o erro "Module not found".
-  boot.extraModulePackages = lib.mkIf (config.gpuVendor == "nvidia") [
-    config.boot.kernelPackages.nvidia_x11
-  ];
-
-  # Força o CARREGAMENTO dos módulos da NVIDIA no início do boot.
-  boot.initrd.kernelModules = lib.mkIf (config.gpuVendor == "nvidia") [
-    "nvidia"
-    "nvidia_modeset"
-    "nvidia_uvm"
-    "nvidia_drm"
-  ];
-
-  # Parâmetros de kernel essenciais para Wayland.
-  boot.kernelParams = lib.mkIf (config.gpuVendor == "nvidia") [
-    "nvidia_drm.modeset=1"
-  ];
-
-  hardware.nvidia = lib.mkIf (config.gpuVendor == "nvidia") {
+  hardware.nvidia = lib.mkIf (gpuVendor == "nvidia") {
     modesetting.enable = true;
+    powerManagement.enable = false;
     open = false;
     nvidiaSettings = true;
-    powerManagement.enable = false;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
     prime = {
       offload.enable = true;
       offload.enableOffloadCmd = true;
+      amdgpuBusId = "PCI:6:0:0";
+      nvidiaBusId = "PCI:1:0:0";
     };
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # ====================================================================
+  boot = lib.mkIf (gpuVendor == "nvidia") {
+    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    kernelParams = [ "nvidia_drm.modeset=1" ];
+  };
+
+  specialisation = lib.mkIf (gpuVendor == "nvidia") {
+    gaming-time.configuration = {
+      system.nixos.label = "NixOS-Gaming-Mode";
+      hardware.nvidia.prime = {
+        sync.enable = lib.mkForce true;
+        offload.enable = lib.mkForce false;
+        offload.enableOffloadCmd = lib.mkForce false;
+      };
+    };
+  };
 }

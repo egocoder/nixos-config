@@ -1,7 +1,3 @@
-# --- flake.nix ---
-# Philosophy: Simple modules. Clear meanings. Growth without chaos.
-# This flake supports both an integrated NixOS system build and a
-# standalone Home Manager configuration for portability.
 {
   description = "A modular, minimal, and scalable NixOS configuration by Weaver.";
 
@@ -25,13 +21,8 @@
         then import ./config.nix
         else throw "ERROR: config.nix not found.";
 
-      # --- Shared Home Manager Configuration ---
-      # This is the single source of truth for the user's home environment.
-      # It is used by both the NixOS system and the standalone home configuration.
       homeManagerModules = [
-        # Import all home modules.
-        ./modules/home/default.nix
-        # Import Stylix home module.
+        ./modules/home/home.nix
         stylix.homeModules.stylix
         # Apply NUR overlay and allow unfree packages for home-manager.
         {
@@ -52,11 +43,9 @@
           inherit (config) hostname username gpuVendor;
         };
         modules = [
-          # System modules
-          ./modules/system/default.nix
+          ./modules/system/system.nix
           ./hosts/${config.hostname}/configuration.nix
 
-          # Flake modules
           stylix.nixosModules.stylix
           nur.modules.nixos.default
 
