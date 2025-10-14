@@ -11,6 +11,5 @@ hosts/*/ssh/*
 flake_backup*
 result*
 *.swp
-ssh.nix
-git.nix
-
+modules/home/ssh/ssh.nix
+modules/home/git/git.nix
