@@ -7,21 +7,19 @@
     userName = "egocoder";
     userEmail = "egocoderx@gmail.com";
 
-    # --- Core Behavior ---
-    # Defines default behaviors to align with modern development standards.
-    init = {
-      defaultBranch = "main";
-    };
-
-    # FIX: Use `extraConfig` for arbitrary git settings like `core.editor`.
-    # The key "core.editor" directly maps to the `git config` command,
-    # making the meaning clear and the module structure correct.
+    # --- Custom Git Settings ---
+    # FIX: `extraConfig` must be a nested set, mirroring the .gitconfig structure.
+    # This makes the meaning clear: `init.defaultBranch` is under the `[init]` section.
     extraConfig = {
-      "core.editor" = "hx";
+      init = {
+        defaultBranch = "main";
+      };
+      core = {
+        editor = "hx";
+      };
     };
 
     # --- Aliases ---
-    # Short, memorable commands for frequent Git operations.
     aliases = {
       co = "checkout";
       br = "branch";

@@ -1,7 +1,7 @@
 # modules/home/ssh/ssh.nix
 {
   # Simple modules. Clear meanings. Growth without chaos.
-  # This module configures the SSH agent for seamless, secure authentication.
+  # This module configures the SSH agent and client for seamless, secure authentication.
 
   # --- GPG Agent as SSH Agent ---
   services.gpg-agent = {
@@ -11,17 +11,21 @@
 
   # --- SSH Client Configuration ---
   programs.ssh = {
-    enable = true;
-    startAgent = false;
-    addKeysToAgent = "yes";
+    enableDefaultConfig = true;
 
-    # --- Key Identities ---
-    # This list is intentionally empty until you add your own keys.
-    # An empty list `[]` is a valid and clear configuration state.
-    identitiesOnly = true;
-    identityFiles = [
-      # Add your key paths here, for example:
-      # "~/.ssh/id_ed25519"
-    ]; # FIX: This closing bracket must not be commented out.
+    matchBlocks = {
+      "all-hosts" = {
+        host = "*";
+        addKeysToAgent = "yes";
+        identitiesOnly = true;
+
+        # FIX: The correct option name is `identityFile` (singular), even
+        # though it accepts a list of files. This matches the Home Manager API.
+        identityFile = [
+          # Add your key paths here, for example:
+          "~/.ssh/id_ed25519"
+        ];
+      };
+    };
   };
 }
