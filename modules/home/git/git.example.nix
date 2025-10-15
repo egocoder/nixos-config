@@ -4,24 +4,19 @@
     enable = true;
 
     # --- User Identity ---
-    userName = "Weaver";
-    userEmail = "weaver@thelcom.net";
+    userName = "egocoder";
+    userEmail = "egocoderx@gmail.com";
 
     # --- Core Behavior ---
-    # Defines default behaviors to align with modern development standards.
     core = {
-      # Use the system's default editor (defined as 'hx' elsewhere).
       editor = "hx";
     };
 
     init = {
-      # Set the default branch name to 'main' for all new repositories.
       defaultBranch = "main";
     };
 
     # --- Aliases ---
-    # Short, memorable commands for frequent Git operations.
-    # This allows for a faster workflow without shell-level complexity.
     aliases = {
       co = "checkout";
       br = "branch";
