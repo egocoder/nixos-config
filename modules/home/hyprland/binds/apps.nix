@@ -9,11 +9,11 @@
 
     # --- User Additions ---
     # Development
-    "$mainMod, C, exec, $editor" # FIX: Use the new $editor variable.
-    "$mainMod, Z, exec, zed"
+    "$mainMod, C, exec, $editor"
+    "$mainMod, Z, exec, zeditor"
 
     # Communication & Web
-    "$mainMod, B, exec, firefox"
+    "$mainMod, B, exec, librewolf"
     "$mainMod, X, exec, vesktop"
   ];
 }
