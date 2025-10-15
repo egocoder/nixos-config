@@ -1,18 +1,10 @@
 { pkgs, ... }:
 
+let
+  # Import the font data from the shared library file.
+  typography = import ../../lib/typography.nix { inherit pkgs; };
+in
 {
-  # Philosophy: Simple modules. Clear meaning. Growth without chaos.
-  # Define a clean and functional font stack with developer-focused fonts.
-
-  fonts.packages = with pkgs; [
-    fira-code
-    miracode
-    monocraft
-    nerd-fonts.hack
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.inconsolata
-    nerd-fonts.terminess-ttf
-    nerd-fonts.gohufont
-    nerd-fonts.symbols-only
-  ];
+  # Install the complete list of font packages provided by the library.
+  fonts.packages = typography.packages;
 }

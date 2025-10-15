@@ -7,11 +7,11 @@ let
       package = pkgs.nerd-fonts.terminess-ttf;
     };
     sansSerif = {
-      name = "Inconsolata Nerd Font";
+      name = "Terminess Nerd Font Mono";
       package = pkgs.nerd-fonts.inconsolata;
     };
     serif = {
-      name = "FiraCode";
+      name = "JetBrainsMonoNL Nerd Font Mono";
       package = pkgs.fira-code;
     };
   };
@@ -19,7 +19,9 @@ let
   extraFonts = with pkgs; [
     miracode
     monocraft
+    nerd-fonts.hack
     nerd-fonts.inconsolata
+    nerd-fonts.jetbrains-mono
     nerd-fonts.terminess-ttf
     nerd-fonts.gohufont
     nerd-fonts.symbols-only
