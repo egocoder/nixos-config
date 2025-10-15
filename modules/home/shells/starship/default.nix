@@ -7,9 +7,7 @@
   # === THEME SELECTOR ===
   # To change the prompt's visual layout, change the import below.
   imports = [
-    # ./the-loom.nix  # The two-line, connected theme.
-    ./the-weaver.nix # Your personal, colorful theme.
-    # ./the-veil.nix  # The minimalist theme.
+    ./the-weaver.nix
   ];
 
   programs.starship = {
