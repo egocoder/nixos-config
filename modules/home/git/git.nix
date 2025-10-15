@@ -1,5 +1,5 @@
+# modules/home/git/git.nix
 {
-
   programs.git = {
     enable = true;
 
@@ -9,17 +9,19 @@
 
     # --- Core Behavior ---
     # Defines default behaviors to align with modern development standards.
-    core = {
-      editor = "hx";
-    };
-
     init = {
       defaultBranch = "main";
     };
 
+    # FIX: Use `extraConfig` for arbitrary git settings like `core.editor`.
+    # The key "core.editor" directly maps to the `git config` command,
+    # making the meaning clear and the module structure correct.
+    extraConfig = {
+      "core.editor" = "hx";
+    };
+
     # --- Aliases ---
     # Short, memorable commands for frequent Git operations.
-    # This allows for a faster workflow without shell-level complexity.
     aliases = {
       co = "checkout";
       br = "branch";
@@ -27,13 +29,5 @@
       unstage = "reset HEAD --";
       last = "log -1 HEAD";
     };
-
-    # --- GPG Signing (Optional) ---
-    # For verifiable, trusted commits. Growth without chaos: enable this
-    # when you have a GPG key ready by uncommenting the lines below.
-    # signing = {
-    #   key = "YOUR_GPG_KEY_ID"; # Replace with your GPG key ID
-    #   signByDefault = true;
-    # };
   };
 }
