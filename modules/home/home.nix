@@ -2,8 +2,10 @@
 
 {
   imports = [
+    ./git
     ./hyprland
     ./packages
+    ./ssh
     ./shells
     ./terminals
     ./stylix
