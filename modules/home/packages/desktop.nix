@@ -10,6 +10,7 @@
     code-cursor
     vscode
     direnv
+    kdePackages.dolphin
     imv
     mpv
     obs-studio

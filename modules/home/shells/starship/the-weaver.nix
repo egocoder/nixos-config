@@ -7,7 +7,7 @@
     # All `palette` definitions are REMOVED. Stylix is the source of truth.
 
     # The format string arranges modules with clear separators.
-    format = "$username:$directory $hostnamet_branch\n$character";
+    format = "$username:$directory $git_branch\n$character";
 
     # Username uses "Golden Thread" color.
     username = {
@@ -16,28 +16,18 @@
       format = "[$user]($style)";
     };
 
-    # Directory uses "Echoing Teal" and now uses the '~' symbol for home.
+    # Directory uses "Echoing Teal" and is truncated.
     directory = {
       style = "base0C";
-      # FIX: Use `home_symbol` for a clear representation of the home directory.
-      # Truncation is removed to show the full relevant path.
-      home_symbol = "~";
+      truncation_length = 1;
+      truncation_symbol = "…/";
       format = "[$path]($style)";
     };
 
-    # Hostname uses "Weaver's Indigo".
-    hostname = {
-      ssh_only = false;
-      style = "base0D";
-      format = "[$hostname]($style) ";
-    };
-
-    # Git branch uses "Twilight Plum" and removes the word "on".
+    # Git branch uses "Twilight Plum".
     git_branch = {
       style = "base0E";
       symbol = "";
-      # FIX: The word "on" is removed from the format string for a cleaner look.
-      # The meaning is clear without it.
       format = "[$symbol $branch]($style)";
     };
 
