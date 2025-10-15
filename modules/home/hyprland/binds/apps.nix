@@ -15,5 +15,8 @@
     # Communication & Web
     "$mainMod, B, exec, librewolf"
     "$mainMod, X, exec, vesktop"
+
+    # Gaming
+    "$mainMod SHIFT, S, exec, steam"
   ];
 }

@@ -1,24 +1,28 @@
+# modules/home/shells/zsh/default.nix
 {
   imports = [
     ./aliases.nix
     ./history.nix
-    ../starship # <-- Points to the new shared starship theme selector
+    ./options.nix
+    ./plugins.nix
   ];
 
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    enableVteIntegration = true; # For better terminal integration
+    enableVteIntegration = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    # Declarative session variables are cleaner than exporting in initContent.
     sessionVariables = {
       EDITOR = "hx";
       PAGER = "less";
     };
-
-    # Let the starship module handle its own initialization.
-    initExtra = "";
   };
+
+  # --- Declarative Tool Integrations ---
+  programs.fzf.enableZshIntegration = true;
+  programs.zoxide.enableZshIntegration = true;
+  programs.atuin.enableZshIntegration = true;
+  programs.direnv.enableZshIntegration = true;
 }

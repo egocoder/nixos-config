@@ -25,7 +25,7 @@ in
       wofi.enable = true;
       hyprlock.enable = true;
       wezterm.enable = true;
-      starship.enable = false;
+      starship.enable = true;
       firefox = {
         enable = true;
         profileNames = [ "default" ];

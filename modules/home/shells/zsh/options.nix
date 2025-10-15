@@ -1,15 +1,18 @@
 {
+  # Defines the core behavior and keybindings of the shell.
 
   programs.zsh.autocd = true;
 
   programs.zsh.setOptions = [
-    # Automatically push visited directories onto the directory stack.
     "AUTO_PUSHD"
   ];
+  
+  # Enable history substring search. This allows finding commands by
+  # typing any part of them, not just the beginning.
+  programs.zsh.historySubstringSearch.enable = true;
 
   programs.zsh.initContent = ''
     # Enable vi-mode for efficient command-line editing.
-    # Provides two distinct modes: normal (for navigation) and insert (for typing).
     bindkey -v
   '';
 }

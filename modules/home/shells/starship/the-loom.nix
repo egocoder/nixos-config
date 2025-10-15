@@ -1,61 +1,33 @@
 # modules/home/shells/starship/the-loom.nix
-{ lib, ... }:
-
 {
+  # The Loom theme, with its structure preserved and colors managed by Stylix.
   programs.starship.settings = {
-    # Simple modules. Clear meanings. Growth without chaos.
-    # This theme weaves prompt segments into a single, unbroken thread.
+    # `palette` and `palettes` sections are REMOVED.
 
-    # Defines the color palette for the Loom.
-    # Centralized colors prevent chaotic visual changes.
-    # We use lib.mkForce to ensure this palette overrides any other definitions (e.g., from stylix).
-    palette = lib.mkForce "weaver";
-    palettes.weaver = {
-      base03 = "#3b4261";
-      base05 = "#c0caf5";
-      violet = "#bb9af7";
-      cyan   = "#7dcfff";
-      gold   = "#e0af68";
-      green  = "#9ece6a";
-      red    = "#db4b4b";
-    };
+    # The format string handles all layout. Sub-modules provide only raw data.
+    format = "[╭ $username@$hostname](bold base0A)\n[╰─](bold base0A) $directory$git_branch$character";
 
-    # The format is a multi-line string.
-    # It must be opened and closed with two single quotes ('').
-    format = ''
-      ╭[ $username$hostname]($style)
-      ╰─ $directory$git_branch$character''; # <-- CORRIGIDO
+    # Sub-modules provide only their raw data for the format string to assemble.
+    username = { show_always = true; format = "$user"; };
+    hostname = { ssh_only = false; format = "$hostname"; };
 
-    username = {
-      show_always = true;
-      style_user = "bold palette:gold";
-      style_root = "bold palette:red";
-      format = "[$user]($style_user)";
-    };
-    hostname = {
-      ssh_only = false;
-      style = "bold palette:gold";
-      format = "[@$hostname]($style)";
-      disabled = false;
-    };
-    
     directory = {
-      style = "bold palette:cyan";
+      style = "bold base0C"; # Echoing Teal
+      format = "[$path]($style) ";
       truncation_length = 4;
       truncation_symbol = "…/";
-      format = "[$path]($style) ";
     };
 
     git_branch = {
-      style = "bold palette:violet";
+      style = "bold base0E"; # Twilight Plum
       format = "[$symbol$branch]($style) ";
       symbol = " ";
     };
-    
+
     character = {
-      success_symbol = "[❯](bold palette:green)";
-      error_symbol = "[❯](bold palette:red)";
-      vicmd_symbol = "[❮](bold palette:green)";
+      success_symbol = "[❯](bold base0B)"; # Verdant Fate
+      error_symbol = "[❯](bold base08)";   # Frayed Thread
+      vicmd_symbol = "[❮](bold base0B)";
     };
   };
 }

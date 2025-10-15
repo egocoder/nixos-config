@@ -1,12 +1,5 @@
-# modules/home/terminals/wezterm/domains.nix
-# This is a Nix expression that generates a Lua string.
-
 { pkgs, ... }:
 ''
-  -- Shell domains -- define available shells and the default program.
-  -- This provides a clear, single place to add or change shell environments,
-  -- enabling growth without chaos.
-
   -- Set Zsh as the default shell for new tabs. The '-l' flag ensures
   -- it starts as a login shell, loading the full environment.
   config.default_prog = { "${pkgs.zsh}/bin/zsh", "-l" };
