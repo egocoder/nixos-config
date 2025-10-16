@@ -5,9 +5,9 @@
     # --- Variables ---
     "$mainMod" = "SUPER";
     "$term" = "wezterm";
-    #"$files" = "wezterm start -- yazi";
+    "$files" = "$term -e sh -c 'yazi'";
     "$menu" = "sh -c 'wofi --show drun'";
-    #"$editor" = "${pkgs.helix}/bin/hx";
+    "$editor" = "$term -e sh -c 'hx'";
 
     # --- General ---
     # Defines the core layout and spacing.
@@ -34,7 +34,7 @@
         new_optimizations = true;
         ignore_opacity = true;
       };
-      
+
       shadow = {
         enabled = true;
         range = 12;          # Correct name for shadow size.
@@ -71,7 +71,7 @@
       };
       sensitivity = 0;
     };
-    
+
     # --- Gestures ---
     # Defines touchpad swipe behaviors.
     gestures = {
