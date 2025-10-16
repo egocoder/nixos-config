@@ -6,6 +6,7 @@
     "$mainMod, RETURN, exec, $term"
     "$mainMod, D, exec, $menu"
     "$mainMod, E, exec, $files"
+    "$mainMod, H, exec, $editor"
 
     # --- User Additions ---
     # Development

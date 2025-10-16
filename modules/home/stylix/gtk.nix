@@ -13,8 +13,8 @@
   # The cursor theme is a global setting, not specific to GTK,
   # but it's logically grouped with other visual elements here.
   home.pointerCursor = {
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
+    name = "DMZ-Black";
+    package = pkgs.vanilla-dmz;
     size = 22;
   };
 }
