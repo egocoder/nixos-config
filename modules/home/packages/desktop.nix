@@ -7,10 +7,8 @@
 
   home.packages = with pkgs; [
     anki
-    code-cursor
     vscode
     direnv
-    kdePackages.dolphin
     imv
     mpv
     obs-studio
@@ -20,5 +18,6 @@
     teams-for-linux
     telegram-desktop
     vesktop
+    zapzap
   ];
 }
