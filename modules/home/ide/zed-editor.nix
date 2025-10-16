@@ -8,27 +8,48 @@
     extensions = [
       "nix"
       "discord-presence"
+      "rust-analyzer"
+      "pylance"
+      "docker"
+      "dockerfile"
+      "docker-compose"
+      "even-better-toml"
+      "prettier"
+      "todo-tree"
+      "material-icon-theme"
+      "git-firefly"
+      "basedPyright"
+      "python-snippets"
     ];
 
     userSettings = lib.mkForce {
-      theme = "Yugen";
+      theme = "Base16 Weaver&#39;s Destiny";
       autosave = "on_focus_change";
-      editor = {
-        font_size = 12;
-        font_family = "JetBrainsMono Nerd Font";
+
+      "cursor_shape" = "block";
+
+      "hide_mouse" = "on_typing";
+
+      "vim_mode" = true;
+
+      # Fonts
+      "buffer_font_family" = "Terminess Nerd Font Mono";
+      "ui_font_family" = "Terminess Nerd Font Mono";
+      "ui_font_size" = 16;
+
+      # Terminal
+
+      "terminal" = {
+        "font_family" = "Terminess Nerd Font Mono";
+        "font_size" = 14;
       };
     };
-
+    # Keymaps
     userKeymaps = [
       {
-        key = "ctrl-shift-p";
-        command = "command_palette.show";
-      }
-      {
-        key = "ctrl-b";
-        command = "toggle_sidebar";
+        "key" = "ctrl-shift-p";
+        "command" = "command_palette.show";
       }
     ];
   };
-
 }
