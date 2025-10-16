@@ -1,7 +1,4 @@
 # private keys / credentials
-flake_backup*
 result*
-docs*
 *.swp
-modules/home/ssh/ssh.nix
-modules/home/git/git.nix
+*.zip
