@@ -6,6 +6,7 @@
     ./git
     ./hyprland
     ./packages
+    ./services
     ./ssh
     ./shells
     ./terminals

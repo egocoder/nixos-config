@@ -24,7 +24,7 @@ in
       qt.enable = true;
       helix.enable = true;
       hyprland.enable = true;
-      hyprpaper.enable = true;
+      #hyprpaper.enable = false;
       hyprlock.enable = true;
       starship.enable = false;
       waybar.enable = true;
