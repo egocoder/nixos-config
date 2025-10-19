@@ -5,6 +5,7 @@
     ./binds
     ./env
     ./rules
+    ./startup.nix
   ];
 
   wayland.windowManager.hyprland = {

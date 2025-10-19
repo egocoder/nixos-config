@@ -2,10 +2,10 @@
 
 {
   imports = [
+    ./editors
     ./git
     ./hyprland
     ./packages
-    ./ide
     ./ssh
     ./shells
     ./terminals

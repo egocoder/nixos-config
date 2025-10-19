@@ -37,8 +37,8 @@
 
       shadow = {
         enabled = true;
-        range = 12;          # Correct name for shadow size.
-        render_power = 3;    # Correct name for shadow falloff.
+        range = 12;
+        render_power = 3;
         offset = "0 2";
       };
 
@@ -52,8 +52,14 @@
     dwindle = {
       pseudotile = true;
       preserve_split = true;
+      special_scale_factor = 1;
     };
-    master.new_on_top = true;
+
+    master = {
+      new_status = "master";
+      new_on_top = 1;
+      mfact = 0.5;
+    };
 
     # --- Input ---
     # Configures keyboard, mouse, and touchpad behavior.
