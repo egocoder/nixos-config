@@ -1,0 +1,18 @@
+scheme: "Weaver's Destiny (Refined)"
+author: "Weaver"
+base00: "101116" # Abyss Black (Fundo)
+base01: "181920" # Shadow Steel
+base02: "24252D" # Loom's Frame
+base03: "32343E" # Faded Memory (Comentários - um pouco mais escuro)
+base04: "A2A8C0" # Thread Gray (Texto padrão - um pouco mais brilhante)
+base05: "D5D8E2" # Soul Ash (Texto brilhante)
+base06: "E3E6F0" # Fate's Glow
+base07: "F2F3F7" # Silk White
+base08: "C77E8C" # Frayed Thread (Vermelho)
+base09: "D9A67D" # Oracle's Glimmer (Laranja)
+base0A: "E1C48B" # Golden Thread (Amarelo)
+base0B: "9EC19F" # Verdant Fate (Verde)
+base0C: "90B6B4" # Echoing Teal (Ciano)
+base0D: "8299C5" # Weaver's Indigo (Azul)
+base0E: "A995C0" # Twilight Plum (Magenta)
+base0F: "6A6D7D" # Stone of Truth (Neutro)

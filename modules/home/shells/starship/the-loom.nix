@@ -1,33 +1,39 @@
 # modules/home/shells/starship/the-loom.nix
+{ config, lib, ... }:
+
+let
+  colors = config.lib.stylix.colors;
+  hex = c: "#${c}";
+in
 {
-  # The Loom theme, with its structure preserved and colors managed by Stylix.
+  # Este tema usa 'username' e 'hostname' como variáveis de texto,
+  # então a regra do '($style)' não se aplica aqui.
   programs.starship.settings = {
-    # `palette` and `palettes` sections are REMOVED.
 
-    # The format string handles all layout. Sub-modules provide only raw data.
-    format = "[╭ $username@$hostname](bold base0A)\n[╰─](bold base0A) $directory$git_branch$character";
+    # O formato é a chave, com cores adaptadas
+    format = "[╭ $username@$hostname](bold ${hex colors.base0A})\n[╰─](bold ${hex colors.base0A}) $directory$git_branch$character";
 
-    # Sub-modules provide only their raw data for the format string to assemble.
+    # Módulos fornecem dados brutos
     username = { show_always = true; format = "$user"; };
     hostname = { ssh_only = false; format = "$hostname"; };
 
     directory = {
-      style = "bold base0C"; # Echoing Teal
+      style = "bold ${hex colors.base0C}"; # Echoing Teal
       format = "[$path]($style) ";
       truncation_length = 4;
       truncation_symbol = "…/";
     };
 
     git_branch = {
-      style = "bold base0E"; # Twilight Plum
+      style = "bold ${hex colors.base0E}"; # Twilight Plum
       format = "[$symbol$branch]($style) ";
       symbol = " ";
     };
 
     character = {
-      success_symbol = "[❯](bold base0B)"; # Verdant Fate
-      error_symbol = "[❯](bold base08)";   # Frayed Thread
-      vicmd_symbol = "[❮](bold base0B)";
+      success_symbol = "[❯](bold ${hex colors.base0B})"; # Verdant Fate
+      error_symbol = "[❯](bold ${hex colors.base08})";   # Frayed Thread
+      vicmd_symbol = "[❮](bold ${hex colors.base0B})";
     };
   };
 }

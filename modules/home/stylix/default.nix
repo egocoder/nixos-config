@@ -9,7 +9,9 @@ in
 
   stylix = {
     enable = true;
-    base16Scheme = ./weaver-daemon.yaml;
+    base16Scheme = ./weaver-void.yaml;
+
+    image = ../../../assets/wallpapers/wallpaper-00.png;
 
     # --- Typography ---
     # The font stack is now sourced directly from the shared library.
@@ -20,12 +22,14 @@ in
     targets = {
       gtk.enable = true;
       qt.enable = true;
+      helix.enable = true;
       hyprland.enable = true;
-      waybar.enable = true;
-      wofi.enable = true;
+      hyprpaper.enable = true;
       hyprlock.enable = true;
+      starship.enable = false;
+      waybar.enable = true;
       wezterm.enable = true;
-      starship.enable = true;
+      wofi.enable = true;
       firefox = {
         enable = true;
         profileNames = [ "default" ];

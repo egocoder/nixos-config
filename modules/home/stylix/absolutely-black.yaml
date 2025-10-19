@@ -1,0 +1,17 @@
+scheme: "Absolute Black"
+base00: "000000" # Fundo principal (editor.background)
+base01: "111111" # Fundo de UI (button.background)
+base02: "222222" # Seleções e hover (editor.selectionBackground)
+base03: "546E7A" # Comentários (comment.foreground)
+base04: "888888" # Texto de UI secundário (editorLineNumber.foreground)
+base05: "dddddd" # Texto principal (editor.foreground)
+base06: "EEFFFF" # Variáveis e texto mais claro (variable.foreground)
+base07: "ffffff" # Texto mais brilhante, cursor (editorCursor.foreground)
+base08: "FF5370" # Vermelho para erros e inválidos (invalid.foreground)
+base09: "F78C6C" # Laranja para números e constantes (constant.numeric.foreground)
+base0A: "FFCB6B" # Amarelo para classes e tipos (entity.name.foreground)
+base0B: "C3E88D" # Verde para strings e símbolos (string.foreground)
+base0C: "89DDFF" # Ciano para operadores e pontuação (keyword.control.foreground)
+base0D: "82AAFF" # Azul para funções e métodos (entity.name.function.foreground)
+base0E: "C792EA" # Magenta/Roxo para palavras-chave (keyword.foreground)
+base0F: "666666" # Um neutro para usos diversos (minimap.findMatchHighlight

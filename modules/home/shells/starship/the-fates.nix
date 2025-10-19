@@ -1,58 +1,49 @@
 # modules/home/shells/starship/the-fates.nix
-{ lib, ... }:
+{ config, lib, ... }:
 
+let
+  colors = config.lib.stylix.colors;
+  hex = c: "#${c}";
+in
 {
   programs.starship.settings = {
-    # Simple modules. Clear meanings. Growth without chaos.
-    # ...
-
-    palette = lib.mkForce "weaver";
-    palettes.weaver = {
-      base05 = "#c0caf5";
-      violet = "#bb9af7";
-      cyan   = "#7dcfff";
-      gold   = "#e0af68";
-      green  = "#9ece6a";
-      red    = "#db4b4b";
-      magenta= "#f7768e";
-    };
+    # 'palette' e 'palettes' removidas.
 
     # The Left Fate: Context.
     format = "$directory$git_branch\n$character";
 
     # The Right Fate: Status indicators.
-    right_format = "$cmd_duration$time"; # <-- ADICIONADO DE VOLTA
+    right_format = "$cmd_duration$time";
 
     directory = {
-    # ... resto do arquivo sem alterações
-      style = "bold palette:cyan";
+      style = "bold ${hex colors.base0C}"; # Adaptado de palette:cyan
       truncation_length = 4;
       format = "[$path]($style) ";
     };
 
     git_branch = {
-      style = "bold palette:violet";
+      style = "bold ${hex colors.base0E}"; # Adaptado de palette:violet
       format = "on [$symbol$branch]($style) ";
       symbol = " ";
     };
 
     cmd_duration = {
       min_time = 500;
-      style = "italic palette:magenta";
+      style = "italic ${hex colors.base09}"; # Adaptado de palette:magenta
       format = "[$duration]($style) ";
     };
 
     time = {
-      disabled = true; # Mantém desabilitado, como você pediu
+      disabled = true;
       use_12hr = false;
-      style = "dimmed palette:base05";
+      style = "dimmed ${hex colors.base05}"; # Adaptado de palette:base05
       format = "at [$time]($style) ";
     };
 
     character = {
-      success_symbol = "[λ](bold palette:green)";
-      error_symbol = "[λ](bold palette:red)";
-      vicmd_symbol = "[λ](bold palette:green)"; # <-- Adicionado vicmd para consistência
+      success_symbol = "[λ](bold ${hex colors.base0B})"; # Adaptado de palette:green
+      error_symbol = "[λ](bold ${hex colors.base08})"; # Adaptado de palette:red
+      vicmd_symbol = "[λ](bold ${hex colors.base0B})";
     };
   };
 }

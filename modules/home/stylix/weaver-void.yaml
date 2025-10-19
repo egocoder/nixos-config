@@ -1,0 +1,35 @@
+scheme: "Weaver Void"
+author: "Weaver"
+
+# Fundo: Pure Black (de Absolute Black)
+base00: 000000
+# UI: Pure Black (de Absolute Black)
+base01: 111111
+# Seleção: Pure Black (de Absolute Black)
+base02: 222222
+# Comentário: Faded Memory (de Weaver's Destiny)
+base03: 32343E
+# Texto Secundário: (de Absolute Black)
+base04: 888888
+# Texto Principal: (de Absolute Black)
+base05: dddddd
+# Texto Brilhante: (de Absolute Black)
+base06: EEFFFF
+# Texto Mais Brilhante: (de Absolute Black)
+base07: ffffff
+# Vermelho: Frayed Thread (de Weaver's Destiny)
+base08: C77E8C
+# Laranja: Oracle's Glimmer (de Weaver's Destiny)
+base09: D9A67D
+# Amarelo: Golden Thread (de Weaver's Destiny)
+base0A: E1C48B
+# Verde: Verdant Fate (de Weaver's Destiny)
+base0B: 9EC19F
+# Ciano: Echoing Teal (de Weaver's Destiny)
+base0C: 90B6B4
+# Azul: Bright Blue (de Absolute Black - para combinar com o roxo)
+base0D: 82AAFF
+# Roxo: Bright Purple (de Absolute Black - SEU PEDIDO)
+base0E: C792EA
+# Neutro: Stone of Truth (de Weaver's Destiny)
+base0F: 6A6D7D

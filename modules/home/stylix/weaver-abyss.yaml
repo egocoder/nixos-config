@@ -1,0 +1,18 @@
+scheme: "Weaver's Abyss"
+author: "Weaver"
+base00: "0D0E11" # True Abyss (Fundo mais escuro)
+base01: "121417" # Void Steel
+base02: "191B20" # Deep Loom
+base03: "2F323A" # Cold Ash (Comentários)
+base04: "A6ACC9" # Shadow Text (Texto padrão)
+base05: "C5CBEA" # Soul Trace (Texto brilhante)
+base06: "D8DDF2" # Ethereal
+base07: "EAEFFD" # Bright Soul
+base08: "C17986" # Blood Thread (Vermelho)
+base09: "D09A70" # Dying Glimmer (Laranja)
+base0A: "D9B879" # Faded Gold (Amarelo)
+base0B: "98B89F" # Verdant Shadow (Verde)
+base0C: "8AB0AF" # Abyssal Teal (Ciano)
+base0D: "7C93BF" # Void Indigo (Azul)
+base0E: "A38FB5" # Murky Plum (Magenta)
+base0F: "5F647D" # Deep Truth (Neutro)

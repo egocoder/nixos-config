@@ -1,11 +1,6 @@
-# modules/home/shells/starship/default.nix
-{
-  # Simple modules. Clear meanings. Growth without chaos.
-  # This module enables Starship and selects the active theme's STRUCTURE.
-  # All COLORS are injected automatically by Stylix.
+{ lib, ... }: # <--- Verifique se esta linha está aqui
 
-  # === THEME SELECTOR ===
-  # To change the prompt's visual layout, change the import below.
+{
   imports = [
     ./the-weaver.nix
   ];
