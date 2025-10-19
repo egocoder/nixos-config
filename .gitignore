@@ -2,3 +2,5 @@
 result*
 *.swp
 *.zip
+
+config.nix

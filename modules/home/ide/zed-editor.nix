@@ -26,8 +26,8 @@
       theme = "Base16 Weaver&#39;s Destiny";
       autosave = "on_focus_change";
 
+      # Cursor
       "cursor_shape" = "block";
-
       "hide_mouse" = "on_typing";
 
       "vim_mode" = true;
@@ -38,7 +38,6 @@
       "ui_font_size" = 16;
 
       # Terminal
-
       "terminal" = {
         "font_family" = "Terminess Nerd Font Mono";
         "font_size" = 14;

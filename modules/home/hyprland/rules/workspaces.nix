@@ -9,7 +9,7 @@
     "idleinhibit fullscreen, fullscreen:1"
 
     # Assign applications to specific workspaces on launch.
-    "workspace 1, class:^(Code|VSCodium|Zed)$"
+    "workspace 1, class:^(Code|Cursor|Zed)$"
     "workspace 2, class:^(firefox|librewolf)$"
     "workspace 4, class:^([Vv]esktop|[Ww]hatsapp-for-linux)$"
     "workspace 8, class:^(steam|lutris|heroic)$" # Added games

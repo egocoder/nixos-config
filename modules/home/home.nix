@@ -10,6 +10,7 @@
     ./shells
     ./terminals
     ./stylix
+    ./obsidian
   ];
 
   config = {

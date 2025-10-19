@@ -10,8 +10,8 @@
     protontricks.enable = true;
 
     extraCompatPackages = with pkgs; [
-      proton-ge-bin        
-      wineWowPackages.stable  
+      proton-ge-bin
+      wineWowPackages.wayland
       winetricks
     ];
 

@@ -6,7 +6,7 @@
   programs.zsh.setOptions = [
     "AUTO_PUSHD"
   ];
-  
+
   # Enable history substring search. This allows finding commands by
   # typing any part of them, not just the beginning.
   programs.zsh.historySubstringSearch.enable = true;
