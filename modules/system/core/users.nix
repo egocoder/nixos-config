@@ -9,5 +9,7 @@
     shell = pkgs.zsh; # ou pkgs.nushell, se quiser usar Nushell como padrão
   };
 
-  security.sudo.wheelNeedsPassword = true;
+  security.sudo-rs.wheelNeedsPassword = true;
+
+  security.sudo-rs.enable = true;
 }
