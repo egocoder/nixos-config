@@ -11,7 +11,6 @@
 
     extraCompatPackages = with pkgs; [
       proton-ge-bin
-      wineWowPackages.wayland
       winetricks
     ];
 
@@ -25,6 +24,7 @@
     bottles             # Wine environment manager
     mangohud            # Performance overlay
     gamescope           # Optional compositor for better latency
+    wineWowPackages.wayland
   ];
 
   # --- Hardware Support ---
