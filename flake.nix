@@ -69,8 +69,8 @@
           {
             programs.hyprland.package = hyprland.packages.${system}.hyprland;
             programs.hyprland.portalPackage = hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-            hardware.graphics.package = hyprland.inputs.nixpkgs.legacyPackages.${system}.mesa;
-            hardware.graphics.package32 = hyprland.inputs.nixpkgs.legacyPackages.${system}.pkgsi686Linux.mesa;
+            #hardware.graphics.package = hyprland.inputs.nixpkgs.legacyPackages.${system}.mesa;
+            #hardware.graphics.package32 = hyprland.inputs.nixpkgs.legacyPackages.${system}.pkgsi686Linux.mesa;
           }
         ];
       };
