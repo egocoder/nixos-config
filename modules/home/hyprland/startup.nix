@@ -1,5 +1,5 @@
 # modules/home/hyprland/startup.nix
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   # Philosophy: Simple module for Hyprland startup applications.
@@ -17,10 +17,10 @@
       # Recommend enabling services.polkitGnome.enable = true; in home.nix instead of a script.
       # If using a custom script, ensure it's in $PATH or use absolute path.
       # Example: "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
-      #
 
+      "${pkgs.swww}/bin/swww-daemon --format xrgb"
       "${pkgs.swww}/bin/swww init"
-      "${pkgs.swww}/bin/swww img ~/Pictures/Wallpapers/wallpaper-00.png"
+      "sleep 1 && ${pkgs.swww}/bin/swww img ${config.home.homeDirectory}/Pictures/Wallpapers/wallpaper-01.png"
 
       # System Tray / Applets
       "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"

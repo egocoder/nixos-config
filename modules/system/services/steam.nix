@@ -24,7 +24,7 @@
     bottles             # Wine environment manager
     mangohud            # Performance overlay
     gamescope           # Optional compositor for better latency
-    wineWowPackages.wayland
+    wineWowPackages.unstable
   ];
 
   # --- Hardware Support ---

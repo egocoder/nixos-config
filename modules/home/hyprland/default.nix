@@ -6,6 +6,7 @@
     ./env
     ./rules
     ./startup.nix
+    #./devices.nix
   ];
 
   wayland.windowManager.hyprland = {

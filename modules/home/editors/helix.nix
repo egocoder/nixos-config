@@ -5,6 +5,24 @@
     enable = true;
     defaultEditor = true;
 
+    settings = {
+      editor = {
+        line-number = "relative";
+        lsp.display-messages = true;
+        scrolloff = 5;
+        mouse = false;
+        auto-completion = true;
+
+        auto-format = true;
+
+        cursor-shape = {
+          insert = "block";
+          normal = "block";
+          select = "underline";
+        };
+      };
+    };
+
     extraPackages = with pkgs; [
       nil
       nixpkgs-fmt
@@ -15,17 +33,6 @@
       tombi
     ];
 
-    settings = {
-
-      editor = {
-        line-number = "relative";
-        lsp.display-messages = true;
-        scrolloff = 5;
-        mouse = false;
-        auto-completion = true;
-      };
-    };
-
     languages = {
       language = [
         { name = "nix"; formatter = { command = "nixpkgs-fmt"; }; }
@@ -34,6 +41,6 @@
         { name = "markdown"; formatter = { command = "markdown-oxide"; }; }
       ];
     };
-    
+
   };
 }

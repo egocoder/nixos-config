@@ -19,5 +19,6 @@
     telegram-desktop
     vesktop
     zapzap
+    r2modman
   ];
 }
